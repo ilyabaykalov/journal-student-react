@@ -7,13 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
-import { AddChapterButton, Chapter, host, Lessons } from './components';
+import { Chapter, host, Lessons } from './components';
 
 library.add(fas);
 
 function App() {
 	const [chapters, updateChapters] = useState(null);
-	const [colors, setColors] = useState(null);
 	const [activeItem, setActiveItem] = useState(null);
 	let history = useHistory();
 
@@ -27,15 +26,6 @@ function App() {
 			console.error(`Ошибка: ${ error }`);
 			alert('Не удалось получить главы с сервера');
 		});
-
-		axios.get(`http://${ host.ip }:${ host.port }/colors`).then(({ data }) => {
-			setColors(data);
-		}).then(() => {
-			console.debug(`Палитра цветов успешно получены с сервера`);
-		}).catch(() => {
-			console.error('Не удалось получить палитру цветов с сервера');
-			alert('Не удалось получить палитру цветов с сервера');
-		});
 	}, []);
 
 	useEffect(() => {
@@ -45,12 +35,6 @@ function App() {
 			setActiveItem(chapter);
 		}
 	}, [chapters, history.location.pathname]);
-
-	/* chapter events */
-	const onAddChapter = chapter => {
-		const newChapter = [...chapters, chapter];
-		updateChapters(newChapter);
-	};
 
 	/* lesson events */
 	const onAddLesson = (chapterId, newLesson) => {
@@ -260,8 +244,6 @@ function App() {
 						<p>Загрузка...</p>
 					</div>
 				) }
-				<AddChapterButton colors={ colors }
-				                  onAdd={ onAddChapter }/>
 			</div>
 			<div className='todo__lessons'>
 				<Route exact path='/'>
