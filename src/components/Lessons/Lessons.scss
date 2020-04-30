@@ -73,6 +73,7 @@
       .title {
         width: 65%;
         align-self: center;
+        cursor: pointer;
       }
 
       .mark {
@@ -159,7 +160,7 @@
       border-radius: 30px;
       width: 20px;
       height: 20px;
-      cursor: pointer;
+      //cursor: pointer;
       transition: background-color 0.15s ease-in-out,
       border-color 0.15s ease-in-out;
     }
@@ -179,12 +180,12 @@
       }
     }
 
-    &:hover {
-      label {
-        background-color: $checkbox-background-color--hover;
-        border-color: $checkbox-border-color--hover;
-      }
-    }
+    //&:hover {
+    //  label {
+    //    background-color: $checkbox-background-color--hover;
+    //    border-color: $checkbox-border-color--hover;
+    //  }
+    //}
   }
 
   &__form {
