@@ -1,4 +1,4 @@
-# Журнал для ведения удаленных занятий на React (версия Teacher)
+# Журнал для ведения удаленных занятий на React (версия Student)
 
 **Stack:**
 - ReactJS (useState, useReducer, useEffect)
