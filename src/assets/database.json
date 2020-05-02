@@ -10,25 +10,25 @@
     {
       "chapterId": 1,
       "title": "Переменные",
-      "homework": "none",
-      "completed": false,
+      "homework": "домашка 1",
+      "completed": true,
       "id": 1,
-      "lessonMark": "none",
-      "homeworkMark": "none"
+      "lessonMark": "4",
+      "homeworkMark": "4"
     },
     {
       "chapterId": 1,
       "title": "Типы данных",
-      "homework": "none",
-      "completed": false,
+      "homework": "домашка 2",
+      "completed": true,
       "id": 2,
-      "lessonMark": "none",
-      "homeworkMark": "none"
+      "lessonMark": "3",
+      "homeworkMark": "3"
     },
     {
       "chapterId": 1,
       "title": "Преобразование типов",
-      "homework": "none",
+      "homework": "не сделала еще",
       "completed": false,
       "id": 3,
       "lessonMark": "none",
