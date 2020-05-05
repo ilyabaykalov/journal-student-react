@@ -5,7 +5,7 @@ import { Lesson } from '../../components';
 
 import './Lessons.scss';
 
-const Lessons = ({ chapter, onRemoveLesson, onEditLesson, onCompleteLesson }) => {
+const Lessons = ({ chapter }) => {
 	return (
 		<div className='lessons'>
 			<Link to={ `/chapters/${ chapter.id }` }>
@@ -22,9 +22,6 @@ const Lessons = ({ chapter, onRemoveLesson, onEditLesson, onCompleteLesson }) =>
 					<Lesson
 						key={ lesson.id }
 						chapter={ chapter }
-						onEdit={ onEditLesson }
-						onRemove={ onRemoveLesson }
-						onComplete={ onCompleteLesson }
 						{ ...lesson }/>
 				)) }
 			</div>

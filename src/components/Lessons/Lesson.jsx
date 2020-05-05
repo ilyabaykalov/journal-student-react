@@ -18,37 +18,37 @@ const Lesson = ({ id, title, homework, lessonMark, homeworkMark, completed }) =>
 	};
 
 	return (
-		<div key={ id } className={ homework === 'none' ? 'lessons__items-row' : 'lessons__items-row clickable' }
-		     onClick = { homework !== 'none' && onClick }>
+		<div key={ id } className={ !homework ? 'lessons__items-row' : 'lessons__items-row clickable' }
+		     onClick={ homework && onClick }>
 			<div className='titleWithCheckbox'>
 				<div className='checkbox'>
 					<input id={ `lesson-${ id }` }
 					       type='checkbox'
 					       checked={ completed }
 					       disabled/>
-					<label className={ lessonMark === 'none' ? '' : lessonMark >= 4 ? 'good' : 'bad' }
+					<label className={ lessonMark && lessonMark >= 4 ? 'good' : 'bad' }
 					       htmlFor={ `lesson-${ id }` }>
-						{ lessonMark === 'none' && <FontAwesomeIcon className='lessons__items-row__complete-button'
-						                                            icon='question'/> }
-						{ lessonMark >= 4 && <FontAwesomeIcon className='lessons__items-row__complete-button'
-						                                      icon='check'/> }
-						{ lessonMark <= 3 && <FontAwesomeIcon className='lessons__items-row__complete-button'
-						                                      icon='times'/> }
+						{ !lessonMark && <FontAwesomeIcon className='lessons__items-row__complete-button'
+						                                  icon='question'/> }
+						{ lessonMark && lessonMark >= 4 &&
+						<FontAwesomeIcon className='lessons__items-row__complete-button'
+						                 icon='check'/> }
+						{ lessonMark && lessonMark <= 3 &&
+						<FontAwesomeIcon className='lessons__items-row__complete-button'
+						                 icon='times'/> }
 					</label>
 				</div>
 				<p className={ completed ? 'title completed' : 'title' }>{ title }
-					{
-						homework !== 'none' &&
-						<FontAwesomeIcon
-							className={ homeworkMark === 'none' ? 'homework-icon' : homeworkMark >= 4 ? 'homework-icon good' : 'homework-icon bad' }
-							icon='book'/>
-					}
+					{ homework &&
+					<FontAwesomeIcon
+						className={ !homeworkMark ? 'homework-icon' : homeworkMark >= 4 ? 'homework-icon good' : 'homework-icon bad' }
+						icon='book'/> }
 				</p>
 			</div>
 			<div className='mark'>
-				<p>{ !lessonMark || lessonMark === 'none' ? 'Нет оценки за урок' : `Оценка за урок: ${ lessonMark }` }</p>
-				{ homework !== 'none' &&
-				<p>{ (!homeworkMark || homeworkMark === 'none') ? 'Нет оценки за д/з' : `Оценка за д/з: ${ homeworkMark }` }</p> }
+				<p>{ !lessonMark ? 'Нет оценки за урок' : `Оценка за урок: ${ lessonMark }` }</p>
+				{ homework &&
+				<p>{ (!homeworkMark) ? 'Нет оценки за д/з' : `Оценка за д/з: ${ homeworkMark }` }</p> }
 			</div>
 		</div>
 	);
