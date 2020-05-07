@@ -16,7 +16,7 @@ function App() {
 	let history = useHistory();
 
 	useEffect(() => {
-		axios.get(`http://${ host.ip }:${ host.port }/api/chapters`).then(({ data }) => {
+		axios.get(`http://${ host.ip }:${ host.port }/chapters`).then(({ data }) => {
 			updateChapters(data);
 		}).then(() => {
 			console.debug(`Главы успешно получены с сервера`);
