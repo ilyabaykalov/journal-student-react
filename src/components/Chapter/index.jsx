@@ -7,7 +7,7 @@ import { fas } from '@fortawesome/free-solid-svg-icons';
 
 import { Badge } from '../../components';
 
-import './Сhapter.scss';
+import './Chapter.scss';
 
 library.add(fas);
 
