@@ -11,7 +11,7 @@ const Lesson = ({ id, title, homework, lessonMark, homeworkMark, completed }) =>
 	const onClick = () => {
 		Swal.fire({
 			title: 'Домашнее задание',
-			text: homework,
+			html: `<p style='text-align: left'>${ homework.replace(/(\d\.)/g, '<br>$1') }</p>`,
 			confirmButtonColor: '#42B883',
 			confirmButtonText: 'Понятно',
 		});
@@ -38,7 +38,7 @@ const Lesson = ({ id, title, homework, lessonMark, homeworkMark, completed }) =>
 						                 icon='times'/> }
 					</label>
 				</div>
-				<p className={ completed ? 'title completed' : 'title' }>{ title }
+				<p className='title'>{ title }
 					{ homework &&
 					<FontAwesomeIcon
 						className={ !homeworkMark ? 'homework-icon' : homeworkMark >= 4 ? 'homework-icon good' : 'homework-icon bad' }
