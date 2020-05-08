@@ -46,7 +46,7 @@
       margin-bottom: 15px;
       cursor: default;
 
-      &.clickable{
+      &.clickable {
         cursor: pointer;
       }
 
@@ -55,16 +55,16 @@
         flex: 1 1;
         min-width: 40%;
 
-        .homework-icon{
+        .homework-icon {
           margin-left: 15px;
           color: $grey--light;
           align-self: center;
 
-          &.good{
+          &.good {
             color: $green--light;
           }
 
-          &.bad{
+          &.bad {
             color: $red--light
           }
         }
@@ -172,12 +172,12 @@
       background-color: $checkbox-background-color--not-marked--checked;
       border-color: $checkbox-border-color--not-marked--checked;
 
-      &.good{
+      &.good {
         background-color: $checkbox-background-color--good--checked;
         border-color: $checkbox-border-color--good--checked;
       }
 
-      &.bad{
+      &.bad {
         background-color: $checkbox-background-color--bad--checked;
         border-color: $checkbox-border-color--bad--checked;
       }
@@ -231,4 +231,15 @@
       }
     }
   }
+}
+
+.homework-text {
+  b {
+    margin-left: 15px;
+    font-size: 16pt;
+  }
+
+  text-align: left;
+  line-height: 18pt;
+  margin-bottom: 15px;
 }

@@ -1,19 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
 import Swal from 'sweetalert2';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { fas } from '@fortawesome/free-solid-svg-icons';
 
+import { host } from '../../components';
+
 library.add(fas);
 
-const Lesson = ({ id, title, homework, lessonMark, homeworkMark, completed }) => {
+const Lesson = ({ id, title, homework, lessonMark, homeworkMark, completed, gitLink }) => {
+	const [link, setLink] = useState(gitLink);
+
 	const onClick = () => {
 		Swal.fire({
 			title: 'Домашнее задание',
-			html: `<p style='text-align: left'>${ homework.replace(/(\d\.)/g, '<br>$1') }</p>`,
+			html: `<p class='homework-text'>${ homework.replace(/(\d\.)/g, '<br>$1') }</p>
+		           <input id='git-link' type='text' class='field' placeholder='Ссылка на Git' value='${ link ? link : '' }'/>`,
 			confirmButtonColor: '#42B883',
 			confirmButtonText: 'Понятно',
+			preConfirm: function () {
+				const newGitLink = document.getElementById('git-link').value;
+				return {
+					newGitLink: newGitLink !== '' ? newGitLink : null,
+				};
+			}
+		}).then(({ value }) => {
+			if (value) {
+				if (value.newGitLink && value.newGitLink !== link) {
+					axios.patch(`http://${ host.ip }:${ host.port }/lessons/link/${ id }`, {
+						gitLink: value.newGitLink,
+					}).then(() => {
+						Swal.fire({
+							icon: 'success',
+							title: 'Ссылка на git сохранена'
+						}).then(() => {
+							console.info('Ссылка на git сохранена');
+						}).then(() => {
+							setLink(value.newGitLink);
+						});
+					}).catch(error => {
+						Swal.fire({
+							icon: 'error',
+							title: 'Не удалось сохранить ссылку на git'
+						}).then(() => {
+							console.error('Не удалось сохранить ссылку на git');
+							console.error(`Ошибка: ${ error }`);
+						});
+					});
+				}
+			}
 		});
 	};
 
